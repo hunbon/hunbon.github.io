@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>숫자 맞추기 게임</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input {
+            padding: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        p {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>숫자 맞추기 게임</h1>
+    <p>1과 100 사이의 숫자를 맞추세요!</p>
+    <input type="number" id="userGuess" placeholder="숫자를 입력하세요" min="1" max="100">
+    <button onclick="checkGuess()">숫자 확인</button>
+    <p id="message"></p>
+
+    <script>
+        // 랜덤 숫자 생성 (1과 100 사이)
+        const randomNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+
+        function checkGuess() {
+            const userGuess = document.getElementById("userGuess").value;
+            const message = document.getElementById("message");
+            attempts++;
+
+            if (userGuess < randomNumber) {
+                message.textContent = `틀렸습니다! 더 큰 숫자입니다. 시도 횟수: ${attempts}`;
+            } else if (userGuess > randomNumber) {
+                message.textContent = `틀렸습니다! 더 작은 숫자입니다. 시도 횟수: ${attempts}`;
+            } else {
+                message.textContent = `정답입니다! ${attempts}번 만에 맞추셨습니다.`;
+            }
+        }
+    </script>
+</body>
+</html>
+
